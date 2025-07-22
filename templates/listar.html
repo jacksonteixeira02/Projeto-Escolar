@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8" />
+    <title>Lista de Alunos</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <h1>Alunos</h1>
+    <a href="{{ url_for('cadastrar') }}">Cadastrar Novo Aluno</a>
+    <a href="{{ url_for('exportar') }}">Exportar lista em CSV</a>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>ID</th><th>Nome</th><th>Nota</th><th>Ações</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for aluno in alunos %}
+            <tr>
+                <td>{{ aluno[0] }}</td>
+                <td>{{ aluno[1] }}</td>
+                <td>{{ aluno[2] }}</td>
+                <td>
+                    <a href="{{ url_for('editar', id=aluno[0]) }}">Editar</a> |
+                    <a href="{{ url_for('excluir', id=aluno[0]) }}">Excluir</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
