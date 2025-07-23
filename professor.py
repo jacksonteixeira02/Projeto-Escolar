@@ -2,16 +2,26 @@ import io
 import sqlite3
 import csv
 
+conProfessor = sqlite3.connect("bancoDados/professor.db")
+curProfessor = conProfessor.cursor()
+
+con = sqlite3.connect("bancoDados/escola.db")
+cur = con.cursor()
+
 def conectar():
-    return sqlite3.connect("escola.db")
+    return sqlite3.connect("bancoDados/escola.db")
+
+def conectarProfessor():
+    return sqlite3.connect("bancoDados/professor.db")
 
 class Professor:
     def __init__(self, id, nome, email, senha, materia):
         self.id = id
         self.nome = nome
-        self.email = email
-        self.senha = senha
         self.materia = materia
+
+    def login_professor(self):
+        pass
 
     def listar(self):
         con = conectar()

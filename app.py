@@ -2,9 +2,10 @@ import io
 import sqlite3
 import csv
 from flask import Flask, render_template, request, redirect, url_for, send_file
-
 import professor
 from professor import Professor
+from usuario import Usuarios
+
 
 prof = Professor(id = 1, nome = "João", email = "joao2016@gmail.com", senha = 1234567789, materia = "Biologia")
 
