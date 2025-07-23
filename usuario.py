@@ -15,7 +15,8 @@ class Usuarios:
     def logar(self, email, senha):
         conUsuario = conectarUsuarios()
         curUsuario = conUsuario.cursor()
-        curUsuario.execute("INSERT INTO usuarios (email, senha) VALUES (?, ?)", (email, senha))
-        conUsuario.commit()
+        curUsuario.execute("SELECT * FROM usuarios WHERE email = ? AND senha = ?", (email, senha))
+        usuario = curUsuario.fetchone()
         conUsuario.close()
+        return usuario
 
