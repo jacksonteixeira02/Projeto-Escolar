@@ -12,13 +12,33 @@ prof = Professor(id=1, nome="João", email="joao2016@gmail.com", senha=123456778
 app = Flask(__name__)
 
 @app.route('/', methods=['GET', 'POST'])
+def cadastrarProfessor():
+    if request.method == 'POST':
+        email = request.form.get("email")
+        senha = request.form.get("senha")
+        materia = request.form.get("materia")
+
+        if not email.endswith("@gmail.com") or len(senha) <= 8:
+            return render_template('cadastarProfessor.html', erro=("Senha ou E-mail inválidos"))
+
+        user = Usuarios()
+        user.cadastrarProfessor(email, senha, materia)
+
+        return redirect(url_for("logarProfessor"))
+
+    return render_template("cadastrarProfessor.html")
+
+
+
+
+@app.route('/logarProfessor', methods=['GET', 'POST'])
 def logarProfessor():
     if request.method == 'POST':
         email = request.form.get("email")
         senha = request.form.get("senha")
 
         if not email.endswith("@gmail.com") or len(senha) <= 8:
-            return render_template('logarProfessor.html', erro="senha ou email inválidos!")
+            return render_template('logarProfessor.html', erro="Senha ou E-mail inválidos!")
 
         user = Usuarios()
         resultado = user.logar(email, senha)

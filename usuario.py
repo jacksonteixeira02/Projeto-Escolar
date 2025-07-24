@@ -1,22 +1,48 @@
 import sqlite3
-
-conUsuario = sqlite3.connect("bancoDados/usuarios.db")
-curUsuario = conUsuario.cursor()
-
-def conectarUsuarios():
-    return sqlite3.connect("bancoDados/usuarios.db")
+from bancoDados import BancoDados
 
 class Usuarios:
-    def __init__(self, id, email, senha):
+    def __init__(self, id=None, email=None, senha=None):
         self.id = id
         self.email = email
         self.senha = senha
+        pass
 
     def logar(self, email, senha):
-        conUsuario = conectarUsuarios()
-        curUsuario = conUsuario.cursor()
-        curUsuario.execute("SELECT * FROM usuarios WHERE email = ? AND senha = ?", (email, senha))
-        usuario = curUsuario.fetchone()
-        conUsuario.close()
+        con = BancoDados.conectarUsuarios()
+        cur = con.cursor()
+        cur.execute("SELECT * FROM usuarios WHERE email = ? AND senha = ?", (email, senha))
+        usuario = cur.fetchone()
+        con.close()
         return usuario
 
+    def cadastrarProfessor(self, email, senha, materia):
+        con = BancoDados.conectarUsuarios()
+        cur = con.cursor()
+
+        cur.execute("SELECT id FROM usuarios WHERE email = ?", (email,))
+        usuario = cur.fetchone()
+
+        if usuario:
+            usuarioId = usuario[0]
+        else:
+            cur.execute("INSERT INTO usuarios (email, senha) VALUES (?, ?)", (email, senha))
+            usuarioId = cur.lastrowid
+            con.commit()
+
+        con.close()
+
+        con = BancoDados.conectarProfessor()
+        cur = con.cursor()
+
+        cur.execute("SELECT id FROM professores WHERE usuario_id = ?", (usuarioId,))
+        professor = cur.fetchone()
+
+        if professor:
+            con.close()
+            raise ValueError("Este usuário já está vinculado a um professor.")
+        else:
+            cur.execute("INSERT INTO professores (nome, materia, usuario_id) VALUES (?, ?, ?)", (email, materia, usuarioId))
+
+        con.commit()
+        con.close()

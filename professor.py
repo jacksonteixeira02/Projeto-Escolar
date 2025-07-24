@@ -1,18 +1,8 @@
 import io
 import sqlite3
 import csv
+from bancoDados import BancoDados
 
-conProfessor = sqlite3.connect("bancoDados/professor.db")
-curProfessor = conProfessor.cursor()
-
-con = sqlite3.connect("bancoDados/escola.db")
-cur = con.cursor()
-
-def conectar():
-    return sqlite3.connect("bancoDados/escola.db")
-
-def conectarProfessor():
-    return sqlite3.connect("bancoDados/professor.db")
 
 class Professor:
     def __init__(self, id, nome, email, senha, materia):
@@ -24,7 +14,7 @@ class Professor:
         pass
 
     def listar(self):
-        con = conectar()
+        con = BancoDados.conectar()
         cur = con.cursor()
         cur.execute("SELECT * FROM alunos")
         alunos = cur.fetchall()
@@ -32,21 +22,21 @@ class Professor:
         return alunos
 
     def cadastrar(self, nome, nota):
-        con = conectar()
+        con = BancoDados.conectar()
         cur = con.cursor()
         cur.execute("INSERT INTO alunos (nome, nota) VALUES (?, ?)", (nome, nota))
         con.commit()
         con.close()
 
     def excluir(self, id):
-        con = conectar()
+        con = BancoDados.conectar()
         cur = con.cursor()
         cur.execute("DELETE FROM alunos WHERE id = ?", (id,))
         con.commit()
         con.close()
 
     def exportar(self):
-        con = conectar()
+        con = BancoDados.conectar()
         cur = con.cursor()
         cur.execute("SELECT * FROM alunos")
         buffer = io.StringIO()
@@ -58,7 +48,7 @@ class Professor:
         return io.BytesIO(buffer.getvalue().encode())
 
     def editar(self, id, nome, nota):
-        con = conectar()
+        con = BancoDados.conectar()
         cur = con.cursor()
         cur.execute("UPDATE alunos SET nome = ?, nota = ? WHERE id = ?", (nome, nota, id))
         con.commit()
@@ -68,7 +58,7 @@ class Professor:
         return aluno
 
     def buscarPorId(self, id):
-        con = conectar()
+        con = BancoDados.conectar()
         cur = con.cursor()
         cur.execute("SELECT * FROM alunos WHERE id = ?", (id,))
         aluno = cur.fetchone()

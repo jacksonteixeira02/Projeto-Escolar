@@ -8,7 +8,8 @@
     <form method="POST">
   <input type="email" name="email" placeholder="Digite seu e-mail">
   <input type="password" name="senha" placeholder="Digite sua senha">
-  <button type="submit">Entrar</button>
+  <input type="text" name="materia" placeholder="Informe a matéria">
+  <button type="submit">Cadastar</button>
   {% if erro %}
     <p style="color: red;">{{ erro }}</p>
   {% endif %}
