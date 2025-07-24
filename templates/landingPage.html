@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Projeto Escolar - Landing Page</title>
+  <link rel="stylesheet" href="{{url_for('static', filename='landingPage.css')}}"/>
+</head>
+<body>
+
+  <header>
+    <h1>Projeto Escolar</h1>
+  </header>
+
+  <section class="hero">
+    <h2>Bem-vindo ao Sistema de Notas</h2>
+    <p>Escolha seu perfil para acessar as funcionalidades do sistema:</p>
+
+    <div class="btn-group">
+      <button class="btn">Sou Aluno</button>
+      <button class="btn" onclick="window.location.href='/cadastrarProfessor'">Sou Professor</button>
+    </div>
+  </section>
+
+  <section class="info">
+    <h3>Sobre o Projeto</h3>
+    <p>
+      Este sistema foi criado para facilitar o gerenciamento escolar, permitindo que professores cadastrem notas de seus alunos de forma prática e segura. Cada professor tem acesso apenas aos alunos que ele registrou, garantindo organização e privacidade. É uma ferramenta simples, feita em Python com SQLite e interface web, ideal para escolas de pequeno e médio porte.
+    </p>
+  </section>
+
+  <footer>
+    Direitos reservados a Jackson Teixeira &copy; 2025
+  </footer>
+
+</body>
+</html>

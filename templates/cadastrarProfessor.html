@@ -3,13 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='cadastrarProfessor.css')}}"/>
 </head>
 <body>
     <form method="POST">
   <input type="email" name="email" placeholder="Digite seu e-mail">
   <input type="password" name="senha" placeholder="Digite sua senha">
   <input type="text" name="materia" placeholder="Informe a matéria">
-  <button type="submit">Cadastar</button>
+  <button type="submit">Cadastrar</button>
   {% if erro %}
     <p style="color: red;">{{ erro }}</p>
   {% endif %}

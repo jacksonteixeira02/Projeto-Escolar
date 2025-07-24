@@ -12,6 +12,14 @@ prof = Professor(id=1, nome="João", email="joao2016@gmail.com", senha=123456778
 app = Flask(__name__)
 
 @app.route('/', methods=['GET', 'POST'])
+def landingPage():
+    if request.method == 'GET':
+        return render_template('landingPage.html')
+    else:
+        return redirect(url_for("cadastrarProfessor"))
+
+
+@app.route('/cadastrarProfessor', methods=['GET', 'POST'])
 def cadastrarProfessor():
     if request.method == 'POST':
         email = request.form.get("email")
@@ -19,7 +27,7 @@ def cadastrarProfessor():
         materia = request.form.get("materia")
 
         if not email.endswith("@gmail.com") or len(senha) <= 8:
-            return render_template('cadastarProfessor.html', erro=("Senha ou E-mail inválidos"))
+            return render_template('cadastrarProfessor.html', erro=("Senha ou E-mail inválidos"))
 
         user = Usuarios()
         user.cadastrarProfessor(email, senha, materia)
