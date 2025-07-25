@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login do Aluno</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='logarAluno.css') }}" />
+</head>
+<body>
+
+  <header>
+    <h1>Login do Aluno</h1>
+  </header>
+
+  <section class="form-container">
+    <h2>Bem-vindo de volta! Faça seu login abaixo</h2>
+    <form method="POST">
+      <input type="email" name="email" placeholder="Digite seu e-mail" required />
+      <input type="password" name="senha" placeholder="Digite sua senha" required />
+      <button type="submit" class="btn">Entrar</button>
+    </form>
+    {% if erro %}
+      <p class="erro">{{ erro }}</p>
+    {% endif %}
+  </section>
+
+  <section class="info">
+    <h3>Por que usar nosso sistema?</h3>
+    <p>Nosso portal ajuda alunos a acompanharem suas notas com facilidade, promovendo o foco nos estudos e a busca por excelência acadêmica.</p>
+    <p class="frase-motivacional">🚀 "O sucesso é a soma de pequenos esforços repetidos todos os dias."</p>
+  </section>
+
+  <footer>
+    Direitos reservados a Jackson Teixeira &copy; 2025
+  </footer>
+
+</body>
+</html>

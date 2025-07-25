@@ -1,0 +1,99 @@
+body {
+  font-family: Arial, sans-serif;
+  background: linear-gradient(to right, #f0f4ff, #d4e4f7);
+  margin: 0;
+  padding: 0;
+}
+
+header {
+  background-color: #2a4b8d;
+  color: white;
+  text-align: center;
+  padding: 20px;
+}
+
+.form-container {
+  max-width: 400px;
+  margin: 40px auto;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.form-container h2 {
+  text-align: center;
+  color: #2a4b8d;
+}
+
+form input {
+  width: 100%;
+  padding: 12px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 16px;
+}
+
+.btn {
+  width: 100%;
+  padding: 12px;
+  background-color: #2a4b8d;
+  color: white;
+  font-size: 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: background-color 0.3s ease;
+}
+
+/* Efeito de brilho no botão */
+.btn:hover {
+  background-color: #1e3668;
+}
+
+.btn::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: rgba(255, 255, 255, 0.2);
+  transition: left 0.4s;
+}
+
+.btn:hover::after {
+  left: 100%;
+}
+
+.erro {
+  color: red;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.info {
+  max-width: 600px;
+  margin: 30px auto;
+  padding: 0 20px;
+  text-align: center;
+}
+
+.frase-motivacional {
+  font-style: italic;
+  margin-top: 10px;
+  color: #2a4b8d;
+}
+
+footer {
+  text-align: center;
+  padding: 15px;
+  background-color: #2a4b8d;
+  color: white;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+}

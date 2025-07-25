@@ -36,7 +36,22 @@ def cadastrarProfessor():
 
     return render_template("cadastrarProfessor.html")
 
+@app.route('/cadastrarAluno', methods=['GET', 'POST'])
+def cadastrarAluno():
+    if request.method == 'POST':
+        email = request.form.get("email")
+        senha = request.form.get("senha")
+        nome = request.form.get("nome")
 
+        if not email.endswith("@gmail.com") or len(senha) <= 8:
+            return render_template('cadastrarAluno.html', erro=("Senha ou E-mail inválidos"))
+
+        user = Usuarios()
+        user.cadastrarAluno(email, senha, nome)
+
+        return redirect(url_for("logarAluno"))
+
+    return render_template("cadastrarAluno.html")
 
 
 @app.route('/logarProfessor', methods=['GET', 'POST'])
@@ -58,6 +73,25 @@ def logarProfessor():
             return render_template('logarProfessor.html', erro="senha ou email inválidos!")
 
     return render_template('logarProfessor.html')
+
+@app.route('/logarAluno', methods=['GET', 'POST'])
+def logarAluno():
+    if request.method == 'POST':
+        email = request.form.get("email")
+        senha = request.form.get("senha")
+
+        if not email.endswith("@gmail.com") or len(senha) <= 8:
+            return render_template('logarAluno.html', erro="Senha ou E-mail inválidos!")
+
+        user = Usuarios()
+        resultado = user.logar(email, senha)
+
+        if resultado:
+            return redirect(url_for("listar")) #Arrumar o listar
+        else:
+            return render_template('logarAluno.html', erro="senha ou email inválidos!")
+
+    return render_template('logarAluno.html')
 
 
 @app.route('/listar', methods=['GET', 'POST'])

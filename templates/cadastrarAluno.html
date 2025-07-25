@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Cadastro de Aluno</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='cadastrarAluno.css') }}" />
+</head>
+<body>
+
+  <header>
+    <h1>Cadastro de Aluno</h1>
+  </header>
+
+  <section class="form-container">
+    <h2>Preencha seus dados para começar a jornada!</h2>
+    <form method="POST">
+      <input type="text" name="nome" placeholder="Digite seu nome completo" required />
+      <input type="email" name="email" placeholder="Digite seu e-mail" required />
+      <input type="password" name="senha" placeholder="Digite sua senha" required />
+      <button type="submit" class="btn" onclick="window.location.href='/logarAluno'">Cadastrar</button>
+    </form>
+    {% if erro %}
+      <p class="erro">{{ erro }}</p>
+    {% endif %}
+  </section>
+
+  <section class="info">
+    <h3>Sobre o Projeto</h3>
+    <p>O sistema ajuda alunos a acompanharem seu desempenho com transparência e facilidade. É o primeiro passo para um futuro brilhante.</p>
+    <p class="frase-motivacional">📘 "Estudar é plantar hoje para colher amanhã. Nunca desista dos seus sonhos!"</p>
+  </section>
+
+  <footer>
+    Direitos reservados a Jackson Teixeira &copy; 2025
+  </footer>
+
+</body>
+</html>

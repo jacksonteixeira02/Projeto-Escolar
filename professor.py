@@ -10,9 +10,6 @@ class Professor:
         self.nome = nome
         self.materia = materia
 
-    def login_professor(self):
-        pass
-
     def listar(self):
         con = BancoDados.conectar()
         cur = con.cursor()
