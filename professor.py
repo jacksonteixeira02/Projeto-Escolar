@@ -19,9 +19,9 @@ class Professor:
         return alunos
 
     def cadastrar(self, nome, nota):
-        con = BancoDados.conectar()
+        con = BancoDados.conectarAlunos()
         cur = con.cursor()
-        cur.execute("INSERT INTO alunos (nome, nota) VALUES (?, ?)", (nome, nota))
+        cur.execute("INSERT INTO alunos (nota) VALUES (?)", nota)
         con.commit()
         con.close()
 
@@ -44,10 +44,10 @@ class Professor:
         buffer.seek(0)
         return io.BytesIO(buffer.getvalue().encode())
 
-    def editar(self, id, nome, nota):
+    def editar(self, id, nota):
         con = BancoDados.conectar()
         cur = con.cursor()
-        cur.execute("UPDATE alunos SET nome = ?, nota = ? WHERE id = ?", (nome, nota, id))
+        cur.execute("UPDATE alunos SET nota = ? WHERE id = ?", (nota, id))
         con.commit()
         cur.execute("SELECT * FROM alunos WHERE id = ?", (id,))
         aluno = cur.fetchone()
@@ -55,7 +55,7 @@ class Professor:
         return aluno
 
     def buscarPorId(self, id):
-        con = BancoDados.conectar()
+        con = BancoDados.conectarAlunos()
         cur = con.cursor()
         cur.execute("SELECT * FROM alunos WHERE id = ?", (id,))
         aluno = cur.fetchone()

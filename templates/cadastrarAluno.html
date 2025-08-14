@@ -19,6 +19,7 @@
       <input type="email" name="email" placeholder="Digite seu e-mail" required />
       <input type="password" name="senha" placeholder="Digite sua senha" required />
       <button type="submit" class="btn" onclick="window.location.href='/logarAluno'">Cadastrar</button>
+       <a href="{{ url_for('logarAluno') }}" >Entrar</a>
     </form>
     {% if erro %}
       <p class="erro">{{ erro }}</p>

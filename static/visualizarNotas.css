@@ -1,0 +1,49 @@
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(120deg, #007BFF, #66B2FF);
+    margin: 0;
+    padding: 0;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+.container {
+    background-color: rgba(255, 255, 255, 0.15);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 0 15px rgba(0,0,0,0.2);
+    text-align: center;
+    width: 90%;
+    max-width: 400px;
+}
+
+h1 {
+    margin-bottom: 20px;
+    font-size: 2em;
+    font-weight: bold;
+}
+
+.nota p {
+    font-size: 1.2em;
+}
+
+.nota h2 {
+    font-size: 3em;
+    margin: 10px 0;
+    color: #FFD700;
+}
+
+.frase {
+    font-style: italic;
+    margin-top: 15px;
+    font-size: 1em;
+    color: #E0E0E0;
+}
+
+.sem-nota {
+    font-size: 1.2em;
+    margin-bottom: 10px;
+}

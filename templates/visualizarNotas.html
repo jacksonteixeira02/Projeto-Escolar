@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sua Nota</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='visualizarNotas.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>📚 Sua Nota</h1>
+        </header>
+
+        <main>
+            {% if nota is not none %}
+                <div class="nota">
+                    <p>Sua nota é:</p>
+                    <h2>{{ nota }}</h2>
+                </div>
+                <p class="frase">"O sucesso é a soma de pequenos esforços repetidos todos os dias!"</p>
+            {% else %}
+                <p class="sem-nota">Você ainda não tem nota registrada.</p>
+                <p class="frase">"Não desanime! Continue estudando e seu esforço será recompensado."</p>
+            {% endif %}
+        </main>
+    </div>
+</body>
+</html>
